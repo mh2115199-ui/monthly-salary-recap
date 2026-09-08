@@ -4,171 +4,69 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#12263f"><title>Monthly Salary Recap</title>
 <style>
-:root{
-  --nav:#07090d;--nav2:#1b1f26;--bg:#f2f4f7;--card:#fff;--muted:#69717d;
-  --line:#dfe3e8;--green:#18a957;--red:#e33434;--white:#fff;
-}
+:root{--nav:#070707;--nav2:#20242b;--bg:#f3f4f6;--card:#fff;--muted:#68707c;--line:#e0e3e7;--green:#17a957;--red:#df3438}
 *{box-sizing:border-box}
-html,body{margin:0;padding:0}
-body{font-family:Segoe UI,Arial,sans-serif;background:var(--bg);color:#121722}
-button,input,select,textarea{font:inherit}
-button{border:0;cursor:pointer;font-weight:800}
-.wrap{max-width:1120px;margin:auto;padding:14px}
+body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:linear-gradient(#f7f7f8,#eceff2);color:#141923}
+.wrap{max-width:1100px;margin:auto;padding:14px}
 .top{
-  background:linear-gradient(180deg,#000 0%,#111318 52%,#3d4652 100%);
-  color:#fff;padding:20px;border-radius:22px;display:flex;gap:18px;
-  align-items:flex-start;position:relative;box-shadow:0 10px 30px rgba(0,0,0,.16)
+ background:linear-gradient(180deg,#000 0%,#090a0d 42%,#3e454e 100%);
+ color:#fff;padding:20px;border-radius:22px;display:flex;justify-content:space-between;gap:18px;align-items:center;
+ box-shadow:0 10px 28px rgba(0,0,0,.16)
 }
-.brandRow{display:flex;align-items:center;gap:13px;min-width:0}
-.menuBtn{
-  width:48px;height:48px;border-radius:14px;background:linear-gradient(145deg,#303640,#08090c);
-  color:#fff;border:1px solid #505762;display:flex;align-items:center;justify-content:center;
-  font-size:25px;box-shadow:0 5px 14px rgba(0,0,0,.3);flex:none
-}
-.top h1{margin:0;font-size:27px;line-height:1.15;font-weight:900}
-.top p{margin:7px 0 0;color:#d9dee5;font-size:13px}
-.monthBox{margin-left:auto;min-width:285px}
-.monthBox label{display:block;color:#e9edf2;font-size:12px;font-weight:900;margin:0 0 6px}
-.month{
-  width:100%;color:#111827;background:#fff;border:1px solid #d8dde4;
-  border-radius:13px;padding:12px 13px;font-weight:800
-}
-.calendar{
-  margin-top:10px;padding:10px;background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.14);border-radius:15px
-}
-.calHead{display:flex;justify-content:space-between;align-items:center;color:#fff;font-weight:900;font-size:12px;margin-bottom:7px}
-.calGrid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
-.calDow{text-align:center;color:#bfc6cf;font-size:9px;font-weight:800;padding:2px 0}
-.dayBtn{
-  min-height:30px;border-radius:8px;background:#252a32;color:#fff;border:1px solid #3d444f;
-  font-size:11px;padding:4px
-}
-.dayBtn.today{border-color:#fff}
-.dayBtn.selected{background:#fff;color:#111;border-color:#fff}
-.dayBtn.empty{visibility:hidden}
-.drawerShade{position:fixed;inset:0;background:rgba(0,0,0,.48);z-index:40;display:none}
-.drawer{
-  position:fixed;left:0;top:0;bottom:0;width:min(310px,84vw);background:#0b0d11;color:#fff;
-  z-index:41;transform:translateX(-105%);transition:.22s ease;box-shadow:10px 0 35px rgba(0,0,0,.35);
-  padding:18px
-}
-.drawer.open{transform:translateX(0)}
-.drawerShade.open{display:block}
-.drawer h2{margin:5px 0 20px;font-size:21px}
-.drawer button{
-  width:100%;text-align:left;padding:14px 15px;margin:5px 0;border-radius:12px;
-  background:#171b22;color:#dfe4ea;border:1px solid #292f38
-}
-.drawer button.active{background:linear-gradient(180deg,#fff,#cfd4da);color:#0b0d11}
-.drawerClose{float:right;background:#222730!important;width:42px!important;text-align:center!important;padding:8px!important}
-.tabs{display:none}
+.topLeft{display:flex;align-items:center;gap:14px;min-width:0}
+.menuBtn{width:52px;height:52px;border-radius:15px;padding:0;background:linear-gradient(145deg,#30353d,#07080a);color:#fff;border:1px solid #5b626c;font-size:28px;line-height:1;flex:none;box-shadow:0 6px 14px rgba(0,0,0,.35)}
+.top h1{margin:0;font-size:25px;font-weight:900;letter-spacing:-.3px}.top p{margin:5px 0 0;color:#dce0e5;font-size:13px}
+select,input,button,textarea{font:inherit}select,input,textarea{border:1px solid #d4d9df;border-radius:11px;padding:10px;background:#fff}button{border:0;border-radius:11px;padding:11px 14px;font-weight:800;cursor:pointer}
+.month{color:#172033;background:#fff;border-radius:11px;min-width:245px;font-weight:800}
+.calendar{margin-top:9px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:14px;padding:8px}
+.calTitle{font-size:11px;font-weight:900;margin-bottom:6px;display:flex;justify-content:space-between}.calGrid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.calDow{text-align:center;color:#cbd0d6;font-size:8px;font-weight:800}.dayBtn{padding:5px 0;font-size:10px;background:#262b31;color:#fff;border:1px solid #3b4149;border-radius:7px}.dayBtn.selected{background:#fff;color:#111}.dayBtn.today{outline:1px solid #fff}.dayBtn.empty{visibility:hidden}
+.circleBtn{width:86px;height:86px;border-radius:50%;padding:0;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:14px;letter-spacing:.5px;box-shadow:0 7px 18px rgba(0,0,0,.2);border:3px solid #fff}.circleIn{background:linear-gradient(145deg,#32c875,#078b47)}.circleOut{background:linear-gradient(145deg,#ff5a5e,#bd1d24)}.circleBtn:active{transform:scale(.97)}
+.tabs{display:flex;gap:8px;overflow:auto;margin:13px 0}.tabs button{background:#fff;border:1px solid var(--line);color:var(--muted);white-space:nowrap}.tabs button.on{background:linear-gradient(180deg,#20242b,#000);border-color:#111;color:#fff}
 .page{display:none}.page.on{display:block}
-.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
-.card{
-  background:linear-gradient(180deg,#111827 0%,#303947 55%,#8a929d 100%);
-  color:#fff;border:1px solid #7e8792;border-radius:18px;padding:18px;
-  min-height:108px;box-shadow:0 8px 22px rgba(10,15,22,.14)
-}
-.card .muted{color:#e5e9ee;font-size:13px;font-weight:700}
-.big{font-size:24px;font-weight:900;margin-top:9px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:13px}
-.panel{
-  background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;
-  box-shadow:0 7px 22px rgba(16,24,40,.06)
-}
-.panel h3{margin:0 0 14px;font-size:19px;font-weight:900}
-.muted{font-size:12px;color:var(--muted)}
-.actions{display:flex;justify-content:center;align-items:center;gap:22px;padding:10px 0 16px}
-.circleBtn{
-  width:86px;height:86px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  color:#fff;font-size:15px;letter-spacing:.5px;border:4px solid #fff;
-  box-shadow:0 8px 20px rgba(0,0,0,.18);transition:.12s
-}
-.circleIn{background:linear-gradient(145deg,#36c978,#078a47)}
-.circleOut{background:linear-gradient(145deg,#ff5757,#bd1f27)}
-.circleBtn:active{transform:scale(.96)}
-.kv{
-  display:flex;justify-content:space-between;align-items:center;gap:14px;
-  padding:12px 0;border-bottom:1px dashed var(--line);font-size:14px;min-height:43px
-}
-.kv:last-child{border-bottom:0}
-.kv span{color:#4d5663}.kv b{font-weight:900;text-align:right}
-.form{display:grid;gap:13px}
-.form label{display:block;font-size:12px;color:#4d5663;font-weight:900;margin-bottom:6px}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:13px}
-input,select,textarea{
-  width:100%;border:1px solid #d4dae1;border-radius:11px;padding:11px 12px;
-  background:#fff;color:#111827;outline:none
-}
-input:focus,select:focus,textarea:focus{border-color:#4b5563;box-shadow:0 0 0 3px rgba(75,85,99,.10)}
-textarea{min-height:85px;resize:vertical}
-.primary{background:linear-gradient(180deg,#262b33,#050608);color:#fff;border-radius:12px;padding:13px}
-.gray{background:linear-gradient(180deg,#f7f8fa,#dfe3e8);color:#172033;border:1px solid #ccd2da;border-radius:11px;padding:11px 14px}
-.red{background:#fff0f0;color:#b91c1c;border-radius:10px;padding:9px 11px}
-.green{background:#eaf8ef;color:#166534;border-radius:10px;padding:9px 11px}
-.ruleBox{background:linear-gradient(135deg,#f7f8fa,#e4e8ed);border:1px solid #d7dce2;border-radius:13px;padding:14px;line-height:1.6}
-.table{overflow:auto}
-.table table{width:100%;border-collapse:separate;border-spacing:0;font-size:13px;min-width:760px}
-.table th,.table td{padding:11px 9px;border-bottom:1px solid var(--line);text-align:left}
-.table th{font-size:11px;color:#374151;text-transform:uppercase;font-weight:900;background:#f5f6f8}
-.badge{display:inline-block;padding:5px 8px;border-radius:99px;font-size:11px;font-weight:900}
-.ot{background:#fff5df;color:#a16207}.off{background:#eeeafd;color:#5b3eb5}.ok{background:#eaf7ef;color:#15803d}
-.empty{text-align:center;padding:28px;color:var(--muted)}
-.desc{line-height:1.65;margin:0 0 14px;color:#69717d}
-.sectionGap{margin-top:13px}
-.toast{position:fixed;right:16px;bottom:16px;background:#11151c;color:#fff;padding:12px 14px;border-radius:11px;display:none;z-index:100}
-.settingsGrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media(max-width:850px){
-  .cards{grid-template-columns:1fr 1fr}
-  .grid,.settingsGrid{grid-template-columns:1fr}
-  .monthBox{width:100%;min-width:0}
-  .top{flex-direction:column}
-}
-@media(max-width:560px){
-  .wrap{padding:10px}
-  .top{padding:16px;border-radius:19px}
-  .top h1{font-size:22px}
-  .cards{gap:9px}
-  .card{min-height:98px;padding:14px}
-  .big{font-size:20px}
-  .two{grid-template-columns:1fr}
-  .circleBtn{width:82px;height:82px}
-  .actions{gap:34px}
-}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.card{background:linear-gradient(180deg,#08090c 0%,#202631 48%,#aab0b7 100%);color:#fff;border:1px solid #8a919a;border-radius:18px;padding:18px;box-shadow:0 8px 22px rgba(0,0,0,.13)}
+.card .muted{color:#eef0f2}.muted{font-size:12px;color:var(--muted)}.big{font-size:23px;font-weight:900;margin-top:8px}
+.grid{display:grid;grid-template-columns:1.1fr .9fr;gap:12px;margin-top:12px}.actions{display:flex;justify-content:center;align-items:center;gap:28px;padding:9px 0}
+.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 7px 22px rgba(18,24,32,.06)}.panel h3{font-weight:900;margin-top:0}
+.primary{background:linear-gradient(180deg,#22272f,#000);color:#fff}.blue{background:linear-gradient(180deg,#f6f7f8,#dfe3e8);color:#172033}.green{background:#eaf7ef;color:#166534}.red{background:#fff0f0;color:#b91c1c}.gray{background:linear-gradient(180deg,#f7f8f9,#dfe3e7);color:#27313e}
+.kv{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:10px 0;border-bottom:1px dashed var(--line);font-size:14px}.kv:last-child{border-bottom:0}.form{display:grid;gap:11px}.form label{font-size:12px;color:var(--muted);font-weight:900}.two{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.table{overflow:auto}.table table{width:100%;border-collapse:collapse;font-size:13px;min-width:760px}.table th,.table td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:left}.table th{font-size:11px;color:#444b56;text-transform:uppercase;font-weight:900}
+.badge{display:inline-block;padding:5px 8px;border-radius:99px;font-size:11px;font-weight:900}.ot{background:#fff5df;color:#a16207}.off{background:#eeeafd;color:#5b3eb5}.ok{background:#eaf7ef;color:#15803d}.empty{text-align:center;padding:28px;color:var(--muted)}
+.toast{position:fixed;right:16px;bottom:16px;background:#11151b;color:#fff;padding:12px 14px;border-radius:11px;display:none;z-index:100}
+.drawerShade{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;z-index:50}.drawerShade.open{display:block}
+.drawer{position:fixed;z-index:51;left:0;top:0;bottom:0;width:min(310px,84vw);background:#0a0b0e;color:#fff;padding:18px;transform:translateX(-105%);transition:.2s;box-shadow:10px 0 35px rgba(0,0,0,.4)}.drawer.open{transform:translateX(0)}
+.drawer h2{font-size:21px;margin:5px 0 18px}.drawerClose{float:right;background:#22262d!important;color:#fff!important;width:40px;padding:8px!important}.drawerItem{width:100%;text-align:left;background:#171a20;color:#e5e7eb;border:1px solid #292e36;margin:5px 0}.drawerItem.active{background:linear-gradient(180deg,#fff,#cfd3d8);color:#090a0c}
+.desc{line-height:1.7;margin:0 0 14px;color:#68707c}
+.settingsBox{background:linear-gradient(135deg,#f7f8f9,#e5e8ec);border:1px solid #d7dbe0;border-radius:13px;padding:14px;line-height:1.6}
+.settingsGrid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+@media(max-width:850px){.cards{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}.top{align-items:flex-start}.month{min-width:0;width:100%}.monthWrap{width:100%}}
+@media(max-width:560px){.wrap{padding:10px}.top{flex-direction:column;align-items:stretch}.top h1{font-size:23px}.actions{gap:24px}.two,.settingsGrid{grid-template-columns:1fr}.big{font-size:20px}}
 </style>>
 </head>
 <body>
 <div class="wrap">
 <header class="top">
-  <div class="brandRow">
+  <div class="topLeft">
     <button id="menuOpen" class="menuBtn" aria-label="Open menu">☰</button>
-    <div>
-      <h1>Monthly Salary Recap</h1>
-      <p>Salary • Attendance • Overtime • Pocket Expenses</p>
-    </div>
+    <div><h1>Monthly Salary Recap</h1><p>Salary • Attendance • Overtime • Pocket Expenses</p></div>
   </div>
-  <div class="monthBox">
-    <label>SELECT MONTH & DATE</label>
+  <div class="monthWrap">
+    <label style="display:block;color:#e8edf4;font-size:12px;font-weight:900;margin:0 0 5px 2px">SELECT MONTH & DATE</label>
     <select id="month" class="month"></select>
-    <div class="calendar">
-      <div class="calHead"><span id="calTitle">Calendar</span><span id="calSelected"></span></div>
-      <div id="calendarGrid" class="calGrid"></div>
-    </div>
+    <div class="calendar"><div id="calTitle" class="calTitle"><span>Calendar</span><span id="calSelected"></span></div><div id="calendarGrid" class="calGrid"></div></div>
   </div>
 </header>
-
 <div id="drawerShade" class="drawerShade"></div>
 <aside id="drawer" class="drawer">
   <button id="menuClose" class="drawerClose">✕</button>
   <h2>Monthly Salary Recap</h2>
-  <button data-tab="dash" class="menuItem active">Dashboard</button>
-  <button data-tab="att" class="menuItem">Attendance</button>
-  <button data-tab="exp" class="menuItem">Expenses</button>
-  <button data-tab="recap" class="menuItem">Monthly Recap</button>
-  <button data-tab="set" class="menuItem">Settings</button>
+  <button class="drawerItem active" data-tab="dash">Dashboard</button>
+  <button class="drawerItem" data-tab="att">Attendance</button>
+  <button class="drawerItem" data-tab="exp">Expenses</button>
+  <button class="drawerItem" data-tab="recap">Monthly Recap</button>
+  <button class="drawerItem" data-tab="set">Settings</button>
 </aside>
-
 <nav class="tabs">
   <button class="on" data-tab="dash">Dashboard</button><button data-tab="att">Attendance</button>
   <button data-tab="exp">Expenses</button><button data-tab="recap">Monthly Recap</button><button data-tab="set">Settings</button>
@@ -182,7 +80,7 @@ textarea{min-height:85px;resize:vertical}
     <div class="card"><div class="muted">Pocket Expenses</div><div id="expA" class="big">Rs. 0</div></div>
   </div>
   <div class="grid">
-    <div class="panel"><h3>Today's Attendance</h3><p class="desc">Aaj ka Time In aur Time Out yahan se automatic save hoga. Agar kisi din bhool jao to Attendance menu mein manual entry kar sakte ho.</p><div class="actions">
+    <div class="panel"><h3>Today's Attendance</h3><p class="desc">Time In aur Time Out automatic save hota hai. Agar kisi din bhool jao to Attendance mein us date ki manual entry kar sakte ho.</p><div class="actions">
       <button id="in" class="circleBtn circleIn" aria-label="Time In">IN</button><button id="out" class="circleBtn circleOut" aria-label="Time Out">OUT</button>
     </div><div id="today" style="margin-top:12px"></div></div>
     <div class="panel"><h3>This Month</h3>
@@ -190,7 +88,7 @@ textarea{min-height:85px;resize:vertical}
       <div class="kv"><span>Sunday / Off-Day Work</span><b id="sunday">0</b></div>
       <div class="kv"><span>Regular-Day OT</span><b id="regOT">0h 0m</b></div>
       <div class="kv"><span>Sunday OT</span><b id="sunOT">0h 0m</b></div>
-      <div class="kv"><span>OT Rate / Hour</span><b id="rateShow">Rs. 100</b></div><div class="kv"><span>Total Payable</span><b id="payable">Rs. 0</b></div>
+      <div class="kv"><span>Total Payable</span><b id="payable">Rs. 0</b></div>
     </div>
   </div>
 </section>
@@ -230,16 +128,9 @@ textarea{min-height:85px;resize:vertical}
 
 <section id="recap" class="page"><div class="panel"><div style="display:flex;justify-content:space-between;align-items:center"><h3>Monthly Recap</h3><button id="csv" class="gray">Export CSV</button></div><div id="recapBody"></div></div></section>
 
-<section id="set" class="page"><div class="panel"><h3>Salary & Overtime Settings</h3>
-<p class="desc">Yahan salary, normal duty hours, OT rate aur weekly off day set karo. Calculation isi setting ke mutabiq hogi.</p>
-<form id="setForm" class="form">
-<div class="settingsGrid">
-  <div><label>Monthly Salary (Rs.)</label><input id="sSalary" type="number" min="0"></div>
-  <div><label>Normal Duty Hours</label><input id="sDuty" type="number" min="1" max="24" step=".5"></div>
-  <div><label>OT Rate per Hour (Rs.)</label><input id="sRate" type="number" min="0" step=".01"></div>
-  <div><label>Weekly Off Day</label><select id="sOff"><option value="0">Sunday</option><option value="1">Monday</option><option value="2">Tuesday</option><option value="3">Wednesday</option><option value="4">Thursday</option><option value="5">Friday</option><option value="6">Saturday</option></select></div>
-</div>
-<div class="ruleBox">Rules: <b>12 hours</b> are normal on working days; hours above 12 become OT. On the weekly off day, <b>all worked hours are OT</b>. No break deduction and no leave/absence salary deduction.</div>
+<section id="set" class="page"><div class="panel"><h3>Salary & Overtime Settings</h3><form id="setForm" class="form">
+<div class="settingsGrid"><div><label>Monthly Salary (Rs.)</label><input id="sSalary" type="number" min="0"></div><div><label>Normal Duty Hours</label><input id="sDuty" type="number" min="1" max="24" step=".5"></div><div><label>OT Rate per Hour (Rs.)</label><input id="sRate" type="number" min="0" step=".01"></div><div><label>Weekly Off Day</label><select id="sOff"><option value="0">Sunday</option><option value="1">Monday</option><option value="2">Tuesday</option><option value="3">Wednesday</option><option value="4">Thursday</option><option value="5">Friday</option><option value="6">Saturday</option></select></div></div>
+<div class="settingsBox">Rules: <b>12 hours</b> are normal on working days; hours above 12 become OT. On the weekly off day, <b>all worked hours are OT</b>. No break deduction and no leave/absence salary deduction.</div>
 <button class="primary">SAVE SETTINGS</button></form></div>
 <div class="panel" style="margin-top:12px"><h3>Backup</h3><button id="backup" class="gray">Download Backup JSON</button> <button id="clear" class="red">Clear All Data</button></div>
 </section>
@@ -247,10 +138,7 @@ textarea{min-height:85px;resize:vertical}
 
 <script>
 const K="monthly_salary_recap_v1";
-let db=JSON.parse(localStorage.getItem(K)||'{"settings":{"salary":50000,"duty":12,"rate":100,"off":0},"att":[],"exp":[]}');
-if(!db.settings)db.settings={salary:50000,duty:12,rate:100,off:0};
-if(!db.att)db.att=[];if(!db.exp)db.exp=[];
-if(!db.settings.otRateFixedV2){db.settings.rate=100;db.settings.otRateFixedV2=true;localStorage.setItem(K,JSON.stringify(db));}
+let db=JSON.parse(localStorage.getItem(K)||'{"settings":{"salary":50000,"duty":12,"rate":300,"off":0},"att":[],"exp":[]}');
 let monthKey=new Date().toISOString().slice(0,7);
 const $=id=>document.getElementById(id), fmt=n=>"Rs. "+Number(n||0).toLocaleString("en-PK",{maximumFractionDigits:2});
 const dk=d=>{let x=new Date(d);return x.getFullYear()+"-"+String(x.getMonth()+1).padStart(2,"0")+"-"+String(x.getDate()).padStart(2,"0")};
@@ -267,39 +155,31 @@ function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&l
 function toast(t){let x=$("toast");x.textContent=t;x.style.display="block";setTimeout(()=>x.style.display="none",2000)}
 
 function renderCalendar(){
-  let parts=monthKey.split("-").map(Number),y=parts[0],m=parts[1];
-  let first=new Date(y,m-1,1,12),last=new Date(y,m,0,12),days=last.getDate(),start=first.getDay();
-  $("calTitle").textContent=first.toLocaleDateString("en-US",{month:"long",year:"numeric"});
-  let selected=$("mDate")?.value||nowDate();
+  let [y,m]=monthKey.split("-").map(Number);
+  let first=new Date(y,m-1,1,12), days=new Date(y,m,0,12).getDate(), start=first.getDay(), selected=$("mDate")?.value||nowDate();
+  $("calTitle").firstElementChild.textContent=first.toLocaleDateString("en-US",{month:"long",year:"numeric"});
   $("calSelected").textContent=selected===nowDate()?"Today":"";
   let h=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].map(x=>`<div class="calDow">${x}</div>`).join("");
-  for(let i=0;i<start;i++)h+='<button class="dayBtn empty" tabindex="-1"></button>';
+  for(let i=0;i<start;i++)h+='<button type="button" class="dayBtn empty"></button>';
   for(let d=1;d<=days;d++){
     let ds=y+"-"+String(m).padStart(2,"0")+"-"+String(d).padStart(2,"0");
-    let cls="dayBtn"+(ds===nowDate()?" today":"")+(ds===selected?" selected":"");
-    h+=`<button type="button" class="${cls}" data-date="${ds}">${d}</button>`;
+    h+=`<button type="button" class="dayBtn ${ds===selected?"selected ":""}${ds===nowDate()?"today":""}" data-date="${ds}">${d}</button>`;
   }
   $("calendarGrid").innerHTML=h;
   document.querySelectorAll(".dayBtn[data-date]").forEach(b=>b.onclick=()=>{
     let ds=b.dataset.date;
     if($("mDate"))$("mDate").value=ds;
     if($("edate"))$("edate").value=ds;
-    if(ds.slice(0,7)!==monthKey){monthKey=ds.slice(0,7);$("month").value=monthKey;render()}
+    if(ds.slice(0,7)!==monthKey){monthKey=ds.slice(0,7);render();}
     else renderCalendar();
   });
 }
-function initMonths(){
-  let y=new Date().getFullYear(),s=$("month");
-  let ms=Array.from({length:12},(_,i)=>y+"-"+String(i+1).padStart(2,"0"));
-  s.innerHTML=ms.map(m=>`<option value="${m}">${new Date(m+"-01T12:00:00").toLocaleDateString("en-US",{month:"long",year:"numeric"})}</option>`).join("");
-  if(ms.includes(monthKey))s.value=monthKey;else{monthKey=y+"-"+String(new Date().getMonth()+1).padStart(2,"0");s.value=monthKey}
-  renderCalendar();
-},(_,i)=>y+"-"+String(i+1).padStart(2,"0"));let s=$("month");s.innerHTML=ms.map(m=>`<option value="${m}">${new Date(m+"-01T12:00:00").toLocaleDateString("en-US",{month:"long",year:"numeric"})}</option>`).join("");s.value=monthKey}
+function initMonths(){let y=new Date().getFullYear();let ms=Array.from({length:12},(_,i)=>y+"-"+String(i+1).padStart(2,"0"));let s=$("month");s.innerHTML=ms.map(m=>`<option value="${m}">${new Date(m+"-01T12:00:00").toLocaleDateString("en-US",{month:"long",year:"numeric"})}</option>`).join("");if(!ms.includes(monthKey))monthKey=y+"-"+String(new Date().getMonth()+1).padStart(2,"0");s.value=monthKey;renderCalendar()}
 function displayTime(t){if(!t)return "—";let n=normalizeTime(t);if(!n)return t;let p=n.split(":").map(Number),h=p[0],mi=String(p[1]).padStart(2,"0"),ap=h>=12?"PM":"AM";h=h%12||12;return h+":"+mi+" "+ap}
 function render(){
- initMonths();let t=mt();$("salary").textContent=fmt(t.salary);$("otH").textContent=minsText(t.ot);$("otA").textContent=fmt(t.otAmt);$("expA").textContent=fmt(t.ex);$("present").textContent=t.days;$("sunday").textContent=t.sun;$("rateShow").textContent=fmt(db.settings.rate);$("regOT").textContent=minsText(t.reg);$("sunOT").textContent=minsText(t.sot);$("payable").textContent=fmt(t.salary+t.otAmt+t.ex);
+ initMonths();let t=mt();$("salary").textContent=fmt(t.salary);$("otH").textContent=minsText(t.ot);$("otA").textContent=fmt(t.otAmt);$("expA").textContent=fmt(t.ex);$("present").textContent=t.days;$("sunday").textContent=t.sun;$("regOT").textContent=minsText(t.reg);$("sunOT").textContent=minsText(t.sot);$("payable").textContent=fmt(t.salary+t.otAmt+t.ex);
  let r=db.att.find(x=>x.date===nowDate()),today=$("today");if(!r)today.innerHTML='<div class="panel" style="background:#fafafa">No Time In recorded today.</div>';else{let c=calc(r);today.innerHTML=`<div class="kv"><span>Time In</span><b>${displayTime(r.timeIn)}</b></div><div class="kv"><span>Time Out</span><b>${displayTime(r.timeOut)}</b></div><div class="kv"><span>Work</span><b>${minsText(c.total)}</b></div><div class="kv"><span>OT</span><b>${minsText(c.ot)}</b></div><div style="margin-top:8px">${c.off?'<span class="badge off">OFF DAY WORK</span>':c.ot?'<span class="badge ot">OVERTIME</span>':'<span class="badge ok">NORMAL</span>'}</div>`}
- renderAtt(t.a);renderExp(t.e);renderRecap(t);loadSettings();renderCalendar()
+ renderAtt(t.a);renderExp(t.e);renderRecap(t);loadSettings()
 }
 function renderAtt(rows){rows=rows.slice().sort((a,b)=>b.date.localeCompare(a.date));$("attTable").innerHTML=rows.length?`<table><thead><tr><th>Date</th><th>In</th><th>Out</th><th>Total</th><th>Auto OT</th><th>Manual OT</th><th>Total OT</th><th>Type</th><th></th></tr></thead><tbody>${rows.map(r=>{let c=calc(r);return`<tr><td>${r.date}</td><td>${displayTime(r.timeIn)}</td><td>${displayTime(r.timeOut)}</td><td>${minsText(c.total)}</td><td>${minsText(c.autoOt)}</td><td>${minsText(c.manualOt)}</td><td>${minsText(c.ot)}</td><td>${c.off?(c.total?'<span class="badge off">OFF DAY WORK</span>':'<span class="badge off">OFF DAY</span>'):c.ot?'<span class="badge ot">REGULAR + OT</span>':'<span class="badge ok">NORMAL</span>'}</td><td><button class="gray" onclick="editAtt('${r.date}')">Edit</button> <button class="red" onclick="delAtt('${r.date}')">Delete</button></td></tr>`}).join("")}</tbody></table>`:'<div class="empty">No attendance records for this month.</div>'}
 function renderExp(rows){$("exm").textContent=fmt(rows.reduce((s,x)=>s+Number(x.amount||0),0));$("exa").textContent=fmt(db.exp.reduce((s,x)=>s+Number(x.amount||0),0));rows=rows.slice().sort((a,b)=>b.date.localeCompare(a.date));$("expTable").innerHTML=rows.length?`<table><thead><tr><th>Date</th><th>Name</th><th>Amount</th><th>Note</th><th></th></tr></thead><tbody>${rows.map(e=>`<tr><td>${e.date}</td><td>${esc(e.name)}</td><td>${fmt(e.amount)}</td><td>${esc(e.note)}</td><td><button class="red" onclick="delExp('${e.id}')">Delete</button></td></tr>`).join("")}</tbody></table>`:'<div class="empty">No expenses for this month.</div>'}
@@ -307,22 +187,22 @@ function renderRecap(t){let mn=new Date(monthKey+"-01T12:00:00").toLocaleDateStr
 function loadSettings(){$("sSalary").value=db.settings.salary;$("sDuty").value=db.settings.duty;$("sRate").value=db.settings.rate;$("sOff").value=db.settings.off}
 $("month").onchange=e=>{monthKey=e.target.value;render()};
 function openPage(tab){
-  document.querySelectorAll(".page").forEach(x=>x.classList.remove("on"));
-  document.querySelectorAll(".menuItem").forEach(x=>x.classList.toggle("active",x.dataset.tab===tab));
   document.querySelectorAll(".tabs button").forEach(x=>x.classList.toggle("on",x.dataset.tab===tab));
+  document.querySelectorAll(".drawerItem").forEach(x=>x.classList.toggle("active",x.dataset.tab===tab));
+  document.querySelectorAll(".page").forEach(x=>x.classList.remove("on"));
   $(tab).classList.add("on");
   $("drawer").classList.remove("open");$("drawerShade").classList.remove("open");
 }
-document.querySelectorAll(".tabs button,.menuItem").forEach(b=>b.onclick=()=>openPage(b.dataset.tab));
+document.querySelectorAll(".tabs button,.drawerItem").forEach(b=>b.onclick=()=>openPage(b.dataset.tab));
 $("menuOpen").onclick=()=>{$("drawer").classList.add("open");$("drawerShade").classList.add("open")};
 $("menuClose").onclick=()=>{$("drawer").classList.remove("open");$("drawerShade").classList.remove("open")};
-$("drawerShade").onclick=()=>{$("drawer").classList.remove("open");$("drawerShade").classList.remove("open")};b.classList.add("on");document.querySelectorAll(".page").forEach(x=>x.classList.remove("on"));$(b.dataset.tab).classList.add("on")});
+$("drawerShade").onclick=()=>{$("drawer").classList.remove("open");$("drawerShade").classList.remove("open")};
 $("in").onclick=()=>{let d=nowDate(),r=db.att.find(x=>x.date===d);if(r?.timeIn)return toast("Time In already saved.");if(!r){r={date:d,timeIn:"",timeOut:""};db.att.push(r)}let n=new Date();r.timeIn=(()=>{let h=n.getHours(),m=String(n.getMinutes()).padStart(2,"0"),ap=h>=12?"PM":"AM";h=h%12||12;return h+":"+m+" "+ap})();save();render();toast("Time In saved.")};
 $("out").onclick=()=>{let d=nowDate(),r=db.att.find(x=>x.date===d);if(!r?.timeIn)return toast("Please record Time In first.");if(r.timeOut)return toast("Time Out already saved.");let n=new Date();r.timeOut=(()=>{let h=n.getHours(),m=String(n.getMinutes()).padStart(2,"0"),ap=h>=12?"PM":"AM";h=h%12||12;return h+":"+m+" "+ap})();save();render();toast("Time Out saved. OT calculated.")};
 $("expForm").onsubmit=e=>{e.preventDefault();db.exp.push({id:crypto.randomUUID(),date:$("edate").value,name:$("ename").value.trim(),amount:Number($("eamt").value),note:$("enote").value.trim()});save();e.target.reset();$("edate").value=nowDate();render();toast("Expense saved.")};
 $("setForm").onsubmit=e=>{e.preventDefault();db.settings={salary:Number($("sSalary").value)||0,duty:Number($("sDuty").value)||12,rate:Number($("sRate").value)||0,off:Number($("sOff").value)};save();render();toast("Settings saved.")};
 window.delAtt=d=>{if(confirm("Delete attendance for "+d+"?")){db.att=db.att.filter(x=>x.date!==d);save();render();}};
-window.editAtt=d=>{let r=db.att.find(x=>x.date===d);if(!r)return;$('mDate').value=r.date;$('mIn').value=displayTime(r.timeIn).replace('—','');$('mOut').value=displayTime(r.timeOut).replace('—','');$('mOT').value=Number(r.manualOT||0);monthKey=r.date.slice(0,7);$("month").value=monthKey;document.querySelector('[data-tab="att"]').click();renderCalendar();window.scrollTo({top:0,behavior:'smooth'});};
+window.editAtt=d=>{let r=db.att.find(x=>x.date===d);if(!r)return;$('mDate').value=r.date;$('mIn').value=displayTime(r.timeIn).replace('—','');$('mOut').value=displayTime(r.timeOut).replace('—','');$('mOT').value=Number(r.manualOT||0);document.querySelector('[data-tab="att"]').click();window.scrollTo({top:0,behavior:'smooth'});};
 $('manualAttForm').onsubmit=e=>{e.preventDefault();let date=$('mDate').value,ti=$('mIn').value.trim(),to=$('mOut').value.trim();if(!parseTime(ti)||!parseTime(to))return toast('Time format: 10:00 AM / 10:00 PM');let r=db.att.find(x=>x.date===date);if(!r){r={date,timeIn:'',timeOut:''};db.att.push(r)}r.timeIn=normalizeTime(ti);r.timeOut=normalizeTime(to);r.manualOT=Math.max(0,Number($('mOT').value||0));save();monthKey=date.slice(0,7);render();toast('Attendance saved / updated.');};
 window.delExp=id=>{if(confirm("Delete this expense?")){db.exp=db.exp.filter(x=>x.id!==id);save();render();}};
 $("backup").onclick=()=>{let b=new Blob([JSON.stringify(db,null,2)],{type:"application/json"}),u=URL.createObjectURL(b),a=document.createElement("a");a.href=u;a.download="monthly-salary-recap-backup.json";a.click();URL.revokeObjectURL(u)};
