@@ -99,13 +99,17 @@ select,input,button,textarea{font:inherit}select,input,textarea{border:1px solid
 
 <script>
 const K="monthly_salary_recap_v1";
-let db=JSON.parse(localStorage.getItem(K)||'{"settings":{"salary":50000,"duty":12,"rate":300,"off":0},"att":[],"exp":[]}');
+const dk=d=>{let x=new Date(d);return x.getFullYear()+"-"+String(x.getMonth()+1).padStart(2,"0")+"-"+String(x.getDate()).padStart(2,"0")};
+let db=JSON.parse(localStorage.getItem(K)||'{"settings":{"salary":50000,"duty":12,"rate":100,"off":0},"att":[],"exp":[]}');
+if(!db.settings)db.settings={salary:50000,duty:12,rate:100,off:0};
+if(!db.att)db.att=[];if(!db.exp)db.exp=[];
+if(db.settings.rate===300 && !db.settings.otRateFixedV2){db.settings.rate=100;}
+db.settings.otRateFixedV2=true;
 let todayISO=dk(new Date());
 let periodFrom=localStorage.getItem(K+"_from")||todayISO.slice(0,8)+"01";
 let periodTo=localStorage.getItem(K+"_to")||todayISO;
 let monthKey=todayISO.slice(0,7);
 const $=id=>document.getElementById(id), fmt=n=>"Rs. "+Number(n||0).toLocaleString("en-PK",{maximumFractionDigits:2});
-const dk=d=>{let x=new Date(d);return x.getFullYear()+"-"+String(x.getMonth()+1).padStart(2,"0")+"-"+String(x.getDate()).padStart(2,"0")};
 const nowDate=()=>dk(new Date());
 function save(){localStorage.setItem(K,JSON.stringify(db))}
 function minsText(m){m=Math.max(0,Math.round(m||0));return Math.floor(m/60)+"h "+(m%60)+"m"}
