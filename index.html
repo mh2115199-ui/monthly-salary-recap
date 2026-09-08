@@ -1,1 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#12263f"><title>Monthly Salary Recap</title>
+<style>
+:root{--nav:#12263f;--blue:#2563eb;--bg:#f4f7fb;--card:#fff;--muted:#6b7280;--line:#e5e7eb;--green:#15803d;--amber:#a16207;--red:#b91c1c}
+*{box-sizing:border-box}body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:var(--bg);color:#172033}
+.wrap{max-width:1100px;margin:auto;padding:16px}.top{background:linear-gradient(135deg,#12263f,#1d4c76);color:#fff;padding:22px;border-radius:20px;display:flex;justify-content:space-between;gap:15px;align-items:center}.top h1{margin:0;font-size:24px}.top p{margin:5px 0 0;color:#d8e5f2;font-size:13px}
+select,input,button,textarea{font:inherit}select,input,textarea{border:1px solid var(--line);border-radius:10px;padding:10px;background:#fff}button{border:0;border-radius:11px;padding:11px 14px;font-weight:700;cursor:pointer}
+.month{color:#172033;background:#fff;border-radius:10px}.tabs{display:flex;gap:8px;overflow:auto;margin:13px 0}.tabs button{background:#fff;border:1px solid var(--line);color:var(--muted);white-space:nowrap}.tabs button.on{background:var(--nav);border-color:var(--nav);color:#fff}
+.page{display:none}.page.on{display:block}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.card,.panel{background:var(--card);border:1px solid var(--line);border-radius:17px;padding:17px;box-shadow:0 7px 25px rgba(18,38,63,.06)}.muted{font-size:12px;color:var(--muted)}.big{font-size:23px;font-weight:800;margin-top:7px}
+.grid{display:grid;grid-template-columns:1.1fr .9fr;gap:12px;margin-top:12px}.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}.primary{background:var(--nav);color:#fff}.blue{background:#eaf2ff;color:#174ea6}.green{background:#eaf7ef;color:#166534}.red{background:#fff0f0;color:var(--red)}.gray{background:#eef1f5;color:#334155}
+.kv{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed var(--line);font-size:14px}.kv:last-child{border-bottom:0}.form{display:grid;gap:10px}.form label{font-size:12px;color:var(--muted);font-weight:700}.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.table{overflow:auto}.table table{width:100%;border-collapse:collapse;font-size:13px;min-width:760px}.table th,.table td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:left}.table th{font-size:11px;color:var(--muted);text-transform:uppercase}.badge{display:inline-block;padding:5px 8px;border-radius:99px;font-size:11px;font-weight:800}.ot{background:#fff5df;color:var(--amber)}.off{background:#eeeafd;color:#5b3eb5}.ok{background:#eaf7ef;color:var(--green)}.empty{text-align:center;padding:28px;color:var(--muted)}
+.toast{position:fixed;right:16px;bottom:16px;background:#172033;color:#fff;padding:12px 14px;border-radius:11px;display:none}
+@media(max-width:850px){.cards{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}}
+@media(max-width:560px){.wrap{padding:10px}.top{flex-direction:column;align-items:flex-start}.actions,.two{grid-template-columns:1fr}.big{font-size:20px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div><h1>Monthly Salary Recap</h1><p>Salary • Attendance • Overtime • Pocket Expenses</p></div>
+  <select id="month" class="month"></select>
+</header>
+<nav class="tabs">
+  <button class="on" data-tab="dash">Dashboard</button><button data-tab="att">Attendance</button>
+  <button data-tab="exp">Expenses</button><button data-tab="recap">Monthly Recap</button><button data-tab="set">Settings</button>
+</nav>
 
+<section id="dash" class="page on">
+  <div class="cards">
+    <div class="card"><div class="muted">Basic Salary</div><div id="salary" class="big">Rs. 0</div></div>
+    <div class="card"><div class="muted">Total OT</div><div id="otH" class="big">0h 0m</div></div>
+    <div class="card"><div class="muted">OT Amount</div><div id="otA" class="big">Rs. 0</div></div>
+    <div class="card"><div class="muted">Pocket Expenses</div><div id="expA" class="big">Rs. 0</div></div>
+  </div>
+  <div class="grid">
+    <div class="panel"><h3>Today's Attendance</h3><div class="actions">
+      <button id="in" class="primary">TIME IN</button><button id="out" class="blue">TIME OUT</button>
+    </div><div id="today" style="margin-top:12px"></div></div>
+    <div class="panel"><h3>This Month</h3>
+      <div class="kv"><span>Present Days</span><b id="present">0</b></div>
+      <div class="kv"><span>Sunday / Off-Day Work</span><b id="sunday">0</b></div>
+      <div class="kv"><span>Regular-Day OT</span><b id="regOT">0h 0m</b></div>
+      <div class="kv"><span>Sunday OT</span><b id="sunOT">0h 0m</b></div>
+      <div class="kv"><span>Total Payable</span><b id="payable">Rs. 0</b></div>
+    </div>
+  </div>
+</section>
+
+<section id="att" class="page"><div class="panel"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><h3>Attendance & Overtime</h3><input id="attDate" type="date"></div><div id="attTable" class="table"></div></div></section>
+
+<section id="exp" class="page">
+<div class="grid">
+  <div class="panel"><h3>Add Pocket Expense</h3><form id="expForm" class="form">
+    <div><label>Date</label><input id="edate" type="date" required></div>
+    <div><label>Expense Name</label><input id="ename" placeholder="Rickshaw / Shop Material" required></div>
+    <div><label>Amount (Rs.)</label><input id="eamt" type="number" min="0" step=".01" required></div>
+    <div><label>Note</label><textarea id="enote" placeholder="Optional"></textarea></div>
+    <button class="primary">SAVE EXPENSE</button>
+  </form></div>
+  <div class="panel"><h3>Expense Summary</h3><div class="kv"><span>This Month</span><b id="exm">Rs. 0</b></div><div class="kv"><span>All Time</span><b id="exa">Rs. 0</b></div><p class="muted">Pocket expenses are added to your receivable amount; they are not deducted from salary.</p></div>
+</div>
+<div class="panel" style="margin-top:12px"><h3>Expense History</h3><div id="expTable" class="table"></div></div>
+</section>
+
+<section id="recap" class="page"><div class="panel"><div style="display:flex;justify-content:space-between;align-items:center"><h3>Monthly Recap</h3><button id="csv" class="gray">Export CSV</button></div><div id="recapBody"></div></div></section>
+
+<section id="set" class="page"><div class="panel"><h3>Salary & Overtime Settings</h3><form id="setForm" class="form">
+<div class="two"><div><label>Monthly Salary (Rs.)</label><input id="sSalary" type="number" min="0"></div><div><label>Normal Duty Hours</label><input id="sDuty" type="number" min="1" max="24" step=".5"></div></div>
+<div class="two"><div><label>OT Rate per Hour (Rs.)</label><input id="sRate" type="number" min="0" step=".01"></div><div><label>Weekly Off Day</label><select id="sOff"><option value="0">Sunday</option><option value="1">Monday</option><option value="2">Tuesday</option><option value="3">Wednesday</option><option value="4">Thursday</option><option value="5">Friday</option><option value="6">Saturday</option></select></div></div>
+<div class="panel" style="background:#f8fbff">Rules: <b>12 hours</b> are normal on working days; hours above 12 become OT. On the weekly off day, <b>all worked hours are OT</b>. No break deduction and no leave/absence salary deduction.</div>
+<button class="primary">SAVE SETTINGS</button></form></div>
+<div class="panel" style="margin-top:12px"><h3>Backup</h3><button id="backup" class="gray">Download Backup JSON</button> <button id="clear" class="red">Clear All Data</button></div>
+</section>
+</div><div id="toast" class="toast"></div>
+
+<script>
+const K="monthly_salary_recap_v1";
+let db=JSON.parse(localStorage.getItem(K)||'{"settings":{"salary":50000,"duty":12,"rate":300,"off":0},"att":[],"exp":[]}');
+let monthKey=new Date().toISOString().slice(0,7);
+const $=id=>document.getElementById(id), fmt=n=>"Rs. "+Number(n||0).toLocaleString("en-PK",{maximumFractionDigits:2});
+const dk=d=>{let x=new Date(d);return x.getFullYear()+"-"+String(x.getMonth()+1).padStart(2,"0")+"-"+String(x.getDate()).padStart(2,"0")};
+const nowDate=()=>dk(new Date());
+function save(){localStorage.setItem(K,JSON.stringify(db))}
+function minsText(m){m=Math.max(0,Math.round(m||0));return Math.floor(m/60)+"h "+(m%60)+"m"}
+function tm(t){if(!t)return null;let p=t.split(":").map(Number);return p[0]*60+p[1]}
+function offDay(date){return new Date(date+"T12:00:00").getDay()===Number(db.settings.off)}
+function calc(r){if(!r.timeIn||!r.timeOut)return {total:0,regular:0,ot:0,off:offDay(r.date)};let a=tm(r.timeIn),b=tm(r.timeOut);if(b<a)b+=1440;let total=b-a,off=offDay(r.date),normal=Number(db.settings.duty)*60;return{total,regular:off?0:Math.min(total,normal),ot:off?total:Math.max(0,total-normal),off}}
+function mt(){let a=db.att.filter(x=>x.date.slice(0,7)===monthKey),e=db.exp.filter(x=>x.date.slice(0,7)===monthKey),ot=0,reg=0,sun=0,days=0,sot=0;for(const r of a){let c=calc(r);ot+=c.ot;reg+=(!c.off?c.ot:0);sot+=c.off?c.ot:0;if(r.timeIn)days++;if(c.off&&c.total)sun++}let ex=e.reduce((s,x)=>s+Number(x.amount||0),0);return{a,e,ot,reg,sot,days,sun,ex,otAmt:ot*Number(db.settings.rate||0),salary:Number(db.settings.salary||0)}}
+function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function toast(t){let x=$("toast");x.textContent=t;x.style.display="block";setTimeout(()=>x.style.display="none",2000)}
+function initMonths(){let ms=new Set([new Date().toISOString().slice(0,7),...db.att.map(x=>x.date.slice(0,7)),...db.exp.map(x=>x.date.slice(0,7))]);let s=$("month");s.innerHTML=[...ms].sort().reverse().map(m=>`<option value="${m}">${new Date(m+"-01T12:00:00").toLocaleDateString("en-US",{month:"long",year:"numeric"})}</option>`).join("");s.value=monthKey}
+function render(){
+ initMonths();let t=mt();$("salary").textContent=fmt(t.salary);$("otH").textContent=minsText(t.ot);$("otA").textContent=fmt(t.otAmt);$("expA").textContent=fmt(t.ex);$("present").textContent=t.days;$("sunday").textContent=t.sun;$("regOT").textContent=minsText(t.reg);$("sunOT").textContent=minsText(t.sot);$("payable").textContent=fmt(t.salary+t.otAmt+t.ex);
+ let r=db.att.find(x=>x.date===nowDate()),today=$("today");if(!r)today.innerHTML='<div class="panel" style="background:#fafafa">No Time In recorded today.</div>';else{let c=calc(r);today.innerHTML=`<div class="kv"><span>Time In</span><b>${r.timeIn||"—"}</b></div><div class="kv"><span>Time Out</span><b>${r.timeOut||"—"}</b></div><div class="kv"><span>Work</span><b>${minsText(c.total)}</b></div><div class="kv"><span>OT</span><b>${minsText(c.ot)}</b></div><div style="margin-top:8px">${c.off?'<span class="badge off">OFF DAY WORK</span>':c.ot?'<span class="badge ot">OVERTIME</span>':'<span class="badge ok">NORMAL</span>'}</div>`}
+ renderAtt(t.a);renderExp(t.e);renderRecap(t);loadSettings()
+}
+function renderAtt(rows){rows=rows.slice().sort((a,b)=>b.date.localeCompare(a.date));$("attTable").innerHTML=rows.length?`<table><thead><tr><th>Date</th><th>In</th><th>Out</th><th>Total</th><th>OT</th><th>Type</th><th></th></tr></thead><tbody>${rows.map(r=>{let c=calc(r);return`<tr><td>${r.date}</td><td>${r.timeIn||"—"}</td><td>${r.timeOut||"—"}</td><td>${minsText(c.total)}</td><td>${minsText(c.ot)}</td><td>${c.off?(c.total?'<span class="badge off">OFF DAY WORK</span>':'<span class="badge off">OFF DAY</span>'):c.ot?'<span class="badge ot">REGULAR + OT</span>':'<span class="badge ok">NORMAL</span>'}</td><td><button class="red" onclick="delAtt('${r.date}')">Delete</button></td></tr>`}).join("")}</tbody></table>`:'<div class="empty">No attendance records for this month.</div>'}
+function renderExp(rows){$("exm").textContent=fmt(rows.reduce((s,x)=>s+Number(x.amount||0),0));$("exa").textContent=fmt(db.exp.reduce((s,x)=>s+Number(x.amount||0),0));rows=rows.slice().sort((a,b)=>b.date.localeCompare(a.date));$("expTable").innerHTML=rows.length?`<table><thead><tr><th>Date</th><th>Name</th><th>Amount</th><th>Note</th><th></th></tr></thead><tbody>${rows.map(e=>`<tr><td>${e.date}</td><td>${esc(e.name)}</td><td>${fmt(e.amount)}</td><td>${esc(e.note)}</td><td><button class="red" onclick="delExp('${e.id}')">Delete</button></td></tr>`).join("")}</tbody></table>`:'<div class="empty">No expenses for this month.</div>'}
+function renderRecap(t){let mn=new Date(monthKey+"-01T12:00:00").toLocaleDateString("en-US",{month:"long",year:"numeric"});$("recapBody").innerHTML=`<div class="cards"><div class="card"><div class="muted">Basic Salary</div><div class="big">${fmt(t.salary)}</div></div><div class="card"><div class="muted">OT Hours</div><div class="big">${minsText(t.ot)}</div></div><div class="card"><div class="muted">OT Amount</div><div class="big">${fmt(t.otAmt)}</div></div><div class="card"><div class="muted">Pocket Expenses</div><div class="big">${fmt(t.ex)}</div></div></div><div class="panel" style="margin-top:12px"><div class="kv"><span>Month</span><b>${mn}</b></div><div class="kv"><span>Present Days</span><b>${t.days}</b></div><div class="kv"><span>Sunday / Off-Day Work</span><b>${t.sun} days</b></div><div class="kv"><span>Regular-Day OT</span><b>${minsText(t.reg)}</b></div><div class="kv"><span>Sunday OT</span><b>${minsText(t.sot)}</b></div><div class="kv"><span>Pocket Expenses</span><b>${fmt(t.ex)}</b></div><div class="kv" style="font-size:18px"><span><b>TOTAL PAYABLE</b></span><b>${fmt(t.salary+t.otAmt+t.ex)}</b></div></div>`}
+function loadSettings(){$("sSalary").value=db.settings.salary;$("sDuty").value=db.settings.duty;$("sRate").value=db.settings.rate;$("sOff").value=db.settings.off}
+$("month").onchange=e=>{monthKey=e.target.value;render()};
+document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tabs button").forEach(x=>x.classList.remove("on"));b.classList.add("on");document.querySelectorAll(".page").forEach(x=>x.classList.remove("on"));$(b.dataset.tab).classList.add("on")});
+$("in").onclick=()=>{let d=nowDate(),r=db.att.find(x=>x.date===d);if(r?.timeIn)return toast("Time In already saved.");if(!r){r={date:d,timeIn:"",timeOut:""};db.att.push(r)}let n=new Date();r.timeIn=String(n.getHours()).padStart(2,"0")+":"+String(n.getMinutes()).padStart(2,"0");save();render();toast("Time In saved.")};
+$("out").onclick=()=>{let d=nowDate(),r=db.att.find(x=>x.date===d);if(!r?.timeIn)return toast("Please record Time In first.");if(r.timeOut)return toast("Time Out already saved.");let n=new Date();r.timeOut=String(n.getHours()).padStart(2,"0")+":"+String(n.getMinutes()).padStart(2,"0");save();render();toast("Time Out saved. OT calculated.")};
+$("expForm").onsubmit=e=>{e.preventDefault();db.exp.push({id:crypto.randomUUID(),date:$("edate").value,name:$("ename").value.trim(),amount:Number($("eamt").value),note:$("enote").value.trim()});save();e.target.reset();$("edate").value=nowDate();render();toast("Expense saved.")};
+$("setForm").onsubmit=e=>{e.preventDefault();db.settings={salary:Number($("sSalary").value)||0,duty:Number($("sDuty").value)||12,rate:Number($("sRate").value)||0,off:Number($("sOff").value)};save();render();toast("Settings saved.")};
+window.delAtt=d=>{if(confirm("Delete attendance for "+d+"?")){db.att=db.att.filter(x=>x.date!==d);save();render();}};
+window.delExp=id=>{if(confirm("Delete this expense?")){db.exp=db.exp.filter(x=>x.id!==id);save();render();}};
+$("backup").onclick=()=>{let b=new Blob([JSON.stringify(db,null,2)],{type:"application/json"}),u=URL.createObjectURL(b),a=document.createElement("a");a.href=u;a.download="monthly-salary-recap-backup.json";a.click();URL.revokeObjectURL(u)};
+$("clear").onclick=()=>{if(confirm("Clear ALL saved data from this browser?")){localStorage.removeItem(K);location.reload()}};
+$("csv").onclick=()=>{let t=mt(),rows=[["Monthly Salary Recap",monthKey],["Basic Salary",t.salary],["OT Hours",minsText(t.ot)],["OT Amount",t.otAmt],["Pocket Expenses",t.ex],["TOTAL PAYABLE",t.salary+t.otAmt+t.ex],[],["Date","Time In","Time Out","Total","OT","Type"]];t.a.slice().sort((a,b)=>a.date.localeCompare(b.date)).forEach(r=>{let c=calc(r);rows.push([r.date,r.timeIn||"",r.timeOut||"",minsText(c.total),minsText(c.ot),c.off?"OFF DAY WORK":c.ot?"REGULAR + OT":"NORMAL"])});let csv=rows.map(x=>x.map(v=>`"${String(v??"").replace(/"/g,'""')}"`).join(",")).join("\\n"),u=URL.createObjectURL(new Blob([csv],{type:"text/csv"})),a=document.createElement("a");a.href=u;a.download="salary-recap-"+monthKey+".csv";a.click();URL.revokeObjectURL(u)};
+$("edate").value=nowDate();$("attDate").value=nowDate();render();
+</script>
+</body></html>
