@@ -2,7 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#12263f"><title>Monthly Salary Recap</title>
+<meta name="theme-color" content="#12263f">
+<link rel="manifest" href="./manifest.json?v=2">
+<link rel="icon" type="image/png" sizes="192x192" href="./app-icon-v2.png?v=2">
+<link rel="apple-touch-icon" sizes="192x192" href="./app-icon-v2.png?v=2">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title>Monthly Salary Recap</title>
 <style>
 :root{--nav:#050608;--blue:#2563eb;--bg:#f4f7fb;--card:#fff;--muted:#667085;--line:#e5e7eb;--green:#16a34a;--amber:#a16207;--red:#dc2626}
 *{box-sizing:border-box}body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:var(--bg);color:#172033}
@@ -190,4 +197,13 @@ $("clear").onclick=()=>{if(confirm("Clear ALL saved data from this browser?")){l
 $("csv").onclick=()=>{let t=mt(),rows=[["Monthly Salary Recap",monthKey],["Basic Salary",t.salary],["OT Hours",minsText(t.ot)],["OT Amount",t.otAmt],["Pocket Expenses",t.ex],["TOTAL PAYABLE",t.salary+t.otAmt+t.ex],[],["Date","Time In","Time Out","Total","Auto OT","Manual OT","Total OT","Type"]];t.a.slice().sort((a,b)=>a.date.localeCompare(b.date)).forEach(r=>{let c=calc(r);rows.push([r.date,displayTime(r.timeIn),displayTime(r.timeOut),minsText(c.total),minsText(c.autoOt),minsText(c.manualOt),minsText(c.ot),c.off?"OFF DAY WORK":c.ot?"REGULAR + OT":"NORMAL"])});let csv=rows.map(x=>x.map(v=>`"${String(v??"").replace(/"/g,'""')}"`).join(",")).join("\\n"),u=URL.createObjectURL(new Blob([csv],{type:"text/csv"})),a=document.createElement("a");a.href=u;a.download="salary-recap-"+periodFrom+"-to-"+periodTo+".csv";a.click();URL.revokeObjectURL(u)};
 $("edate").value=nowDate();$("attDate").value=nowDate();$("mDate").value=nowDate();$("loanDate").value=nowDate();render();
 </script>
+
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js?v=2").catch(() => {});
+  });
+}
+</script>
+
 </body></html>
