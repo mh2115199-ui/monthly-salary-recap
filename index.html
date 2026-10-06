@@ -2,10 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#12263f">
-<link rel="manifest" href="./manifest.json?v=2">
-<link rel="icon" type="image/png" sizes="192x192" href="./app-icon-v2.png?v=2">
-<link rel="apple-touch-icon" sizes="192x192" href="./app-icon-v2.png?v=2">
+<meta name="theme-color" content="#050608">
+<link rel="manifest" href="./manifest.json?v=3">
+<link rel="icon" type="image/png" sizes="192x192" href="./app-icon-192.png?v=3">
+<link rel="apple-touch-icon" sizes="192x192" href="./app-icon-192.png?v=3">
+<link rel="icon" type="image/png" sizes="48x48" href="./app-icon-48.png?v=3">
+<link rel="icon" type="image/png" sizes="96x96" href="./app-icon-96.png?v=3">
+<link rel="icon" type="image/png" sizes="144x144" href="./app-icon-144.png?v=3">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -194,7 +197,7 @@ $("loanCancel").onclick=()=>{$("loanForm").reset();$("loanId").value="";$("loanD
 
 $("backup").onclick=()=>{let b=new Blob([JSON.stringify(db,null,2)],{type:"application/json"}),u=URL.createObjectURL(b),a=document.createElement("a");a.href=u;a.download="monthly-salary-recap-backup.json";a.click();URL.revokeObjectURL(u)};
 $("clear").onclick=()=>{if(confirm("Clear ALL saved data from this browser?")){localStorage.removeItem(K);location.reload()}};
-$("csv").onclick=()=>{let t=mt(),rows=[["Monthly Salary Recap",monthKey],["Basic Salary",t.salary],["OT Hours",minsText(t.ot)],["OT Amount",t.otAmt],["Pocket Expenses",t.ex],["TOTAL PAYABLE",t.salary+t.otAmt+t.ex],[],["Date","Time In","Time Out","Total","Auto OT","Manual OT","Total OT","Type"]];t.a.slice().sort((a,b)=>a.date.localeCompare(b.date)).forEach(r=>{let c=calc(r);rows.push([r.date,displayTime(r.timeIn),displayTime(r.timeOut),minsText(c.total),minsText(c.autoOt),minsText(c.manualOt),minsText(c.ot),c.off?"OFF DAY WORK":c.ot?"REGULAR + OT":"NORMAL"])});let csv=rows.map(x=>x.map(v=>`"${String(v??"").replace(/"/g,'""')}"`).join(",")).join("\\n"),u=URL.createObjectURL(new Blob([csv],{type:"text/csv"})),a=document.createElement("a");a.href=u;a.download="salary-recap-"+periodFrom+"-to-"+periodTo+".csv";a.click();URL.revokeObjectURL(u)};
+$("csv").onclick=()=>{let t=mt(),rows=[["Monthly Salary Recap",monthKey],["Basic Salary",t.salary],["OT Hours",minsText(t.ot)],["OT Amount",t.otAmt],["Pocket Expenses",t.ex],["TOTAL PAYABLE",t.salary+t.otAmt+t.ex],[],["Date","Time In","Time Out","Total","Auto OT","Manual OT","Total OT","Type"]];t.a.slice().sort((a,b)=>a.date.localeCompare(b.date)).forEach(r=>{let c=calc(r);rows.push([r.date,displayTime(r.timeIn),displayTime(r.timeOut),minsText(c.total),minsText(c.autoOt),minsText(c.manualOt),minsText(c.ot),c.off?"OFF DAY WORK":c.ot?"REGULAR + OT":"NORMAL"])});let csv=rows.map(x=>x.map(v=>`"${String(v??"").replace(/"/g,'""')}"`).join(",")).join("\\r\\n"),u=URL.createObjectURL(new Blob(["\ufeff"+csv],{type:"text/csv;charset=utf-8"})),a=document.createElement("a");a.href=u;a.download="salary-recap-"+periodFrom+"-to-"+periodTo+".csv";a.click();URL.revokeObjectURL(u)};
 $("edate").value=nowDate();$("attDate").value=nowDate();$("mDate").value=nowDate();$("loanDate").value=nowDate();render();
 </script>
 
