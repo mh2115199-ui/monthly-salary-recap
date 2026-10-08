@@ -12,7 +12,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<title>Monthly Salary Recap</title>
+<title>Easy Print Solution Attendance Software</title>
 <style>
 :root{--nav:#050608;--blue:#2563eb;--bg:#f4f7fb;--card:#fff;--muted:#667085;--line:#e5e7eb;--green:#16a34a;--amber:#a16207;--red:#dc2626}
 *{box-sizing:border-box}body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:var(--bg);color:#172033}
@@ -60,26 +60,79 @@ select,input,textarea{color:#edf1f7;background:#0b1119;border:1px solid #283341;
 @media(max-width:560px){.wrap{padding:0 10px 26px}.top{padding:14px 0 12px}.topHead{flex-direction:row-reverse;align-items:flex-start}.periodGrid{grid-template-columns:1fr 1fr!important}.two{grid-template-columns:1fr 1fr}.pageHeading h2{font-size:21px}.panel{padding:12px}.grid{grid-template-columns:1fr}.actions{grid-template-columns:1fr 1fr}.brandLogo{width:104px!important;height:44px!important}.brandTag{font-size:12px!important}}
 @media(max-width:365px){.two{grid-template-columns:1fr}.periodBox input{font-size:10px}.periodSummary #periodPayable{font-size:25px}}
 
+
+/* Exact reference alignment — narrow, vertically stacked mobile cards */
+.wrap{max-width:480px;margin:auto;padding:0 12px 35px}
+.top{margin:0 -12px 16px;padding:16px 14px 13px}
+.brandIdentity{gap:0!important}
+.brandCopy .brandTag{font-size:15px!important;font-weight:650!important;line-height:1.3;letter-spacing:-.2px}
+.brandCopy p{font-size:10px!important;margin-top:4px!important}
+.pageHeading{margin:17px 0 12px}
+.pageHeading h2{font-size:22px}
+.pageHeading span{font-size:11px}
+.employeeStrip{margin:0 0 14px;padding:0 2px}
+.salaryPeriodPanel{margin:0 0 11px}
+.salaryHeroCard{margin:0 0 11px!important;padding:15px 13px!important}
+.heroTop{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#d8e5f4}
+.heroTop span:last-child{font-size:10px;color:#b9c7d9}
+.heroAmount{font-size:30px;font-weight:850;letter-spacing:-1px;padding:11px 0 8px}
+.heroBreakdown .kv{padding:7px 0;font-size:12px;border-bottom:0}
+.heroBreakdown .kv span{color:#c3d0e2}
+#dash .grid{display:flex;flex-direction:column;gap:0}
+#dash .grid>.panel{margin:0 0 10px}
+#dash .grid>.panel:first-child .actions{margin-top:12px}
+#dash .grid>.panel:first-child #today{margin-top:5px!important}
+#dash .grid>.panel:first-child .circleBtn{height:42px}
+#dash .grid>.panel:last-child .kv:last-child{border-bottom:0}
+#att .panel,#exp .panel,#khata .panel,#set .panel,#recap .panel{margin-bottom:11px}
+#att .panel h3,#exp .panel h3,#khata .panel h3,#set .panel h3{font-size:14px}
+#att .panel .form,#exp .panel .form{gap:11px}
+#recap .panel>.pageHeading{display:none}
+#recap .panel>div:first-child{display:flex;justify-content:space-between;align-items:center}
+#recap .panel>div:first-child .sectionTitle{margin:0}
+.recapDetail{padding:12px 0;border-bottom:1px solid #283340}
+.recapTitle{font-size:13px;font-weight:700;margin:2px 0 8px;display:flex;justify-content:space-between;gap:8px}
+.recapTitle span{font-size:10px;font-weight:400;color:#91a0b3}
+.recapDetail .kv{font-size:12px;padding:10px 0}
+.recapPayable{margin:15px 0 8px;padding:16px;background:linear-gradient(115deg,#0f3c58,#202e58,#30224b);border:1px solid #31476b;border-radius:9px;display:flex;flex-direction:column;gap:7px}
+.recapPayable span{font-size:12px;color:#e7f3ff}
+.recapPayable strong{font-size:28px;letter-spacing:-1px}
+.recapPayable small{font-size:10px;color:#c5d3e6}
+#csv{width:100%;margin:10px 0 0}
+#recap .panel>div:first-child{flex-wrap:wrap}
+#recap .panel>div:first-child #csv{order:2}
+#recap .panel>div:first-child h3{order:1}
+#recapBody{width:100%}
+#recap .panel>div:first-child{display:contents}
+#recap .panel>div:first-child .sectionTitle{display:none}
+#recap .panel>div:first-child #csv{display:block;position:relative;top:0}
+#recap .panel{display:flex;flex-direction:column}
+#recapBody{order:1}
+#csv{order:2}
+@media(min-width:600px){.wrap{max-width:480px}}
 </style>
 </head>
 <body>
 <div class="wrap">
 <header class="top">
-  <div class="topHead"><button type="button" id="menuBtn" class="menuBtn" aria-label="Open menu">⋮</button><div class="brandIdentity"><img class="brandLogo" src="./easy-print-solution-logo.png" alt="Easy Print Solution original logo"><div class="brandCopy"><div class="brandTag">Easy Print Solution Software</div><h1 class="visuallyHidden">Monthly Salary Recap</h1><p>Salary • Attendance • Overtime • Pocket Expenses</p></div></div></div>
+  <div class="topHead"><button type="button" id="menuBtn" class="menuBtn" aria-label="Open menu">⋮</button><div class="brandIdentity"><div class="brandCopy"><div class="brandTag">Easy Print Solution Attendance Software</div><p>Salary • Attendance • Overtime • Pocket Expenses</p></div></div></div>
   </header>
-<div id="drawer" class="drawer" aria-hidden="true"><div class="drawerPanel"><button type="button" id="menuClose" class="menuClose" aria-label="Close menu">×</button><div class="drawerBrand"><img src="./easy-print-solution-logo.png" alt="Easy Print Solution" style="width:115px;background:white;border-radius:4px;padding:3px;margin-bottom:10px"></div><h2>Easy Print Solution Software</h2><button type="button" class="menuItem on" data-tab="dash">Dashboard</button><button type="button" class="menuItem" data-tab="att">Attendance</button><button type="button" class="menuItem" data-tab="exp">Expenses</button><button type="button" class="menuItem" data-tab="recap">Monthly Recap</button><button type="button" class="menuItem" data-tab="khata">Khata / Udhar</button><button type="button" class="menuItem" data-tab="set">Settings</button></div></div>
+<div id="drawer" class="drawer" aria-hidden="true"><div class="drawerPanel"><button type="button" id="menuClose" class="menuClose" aria-label="Close menu">×</button><h2>Easy Print Solution Attendance Software</h2><button type="button" class="menuItem on" data-tab="dash">Dashboard</button><button type="button" class="menuItem" data-tab="att">Attendance</button><button type="button" class="menuItem" data-tab="exp">Expenses</button><button type="button" class="menuItem" data-tab="recap">Monthly Recap</button><button type="button" class="menuItem" data-tab="khata">Khata / Udhar</button><button type="button" class="menuItem" data-tab="set">Settings</button></div></div>
 
 <section id="dash" class="page on"><div class="pageHeading"><h2>Dashboard</h2><span>Overview</span></div><div class="employeeStrip"><div><small>EMPLOYEE</small><strong id="employeeHero">Hassan</strong></div><div><small>MONTHLY SALARY</small><strong id="salaryHero">Rs. 0</strong></div></div><div class="panel salaryPeriodPanel"><div class="panelHeader"><h3>Salary period</h3><span>Custom range</span></div><div class="periodGrid">
     <div class="periodBox"><label>FROM DATE</label><input id="fromDate" type="date"></div>
     <div class="periodBox"><label>TO DATE</label><input id="toDate" type="date"></div>
   </div>
 </div>
-  <div class="periodSummary"><div class="payableLabel">Total payable</div><div class="kv"><span>Salary Period</span><b id="periodLabel">—</b></div><div class="kv"><span>Period Calculation</span><b id="periodPayable">Rs. 0</b></div></div>
-  <div class="cards dashboardMetrics" style="margin-top:12px">
-    <div class="card"><div class="muted">Basic Salary</div><div id="salary" class="big">Rs. 0</div></div>
-    <div class="card"><div class="muted">Total OT</div><div id="otH" class="big">0h 0m</div></div>
-    <div class="card"><div class="muted">OT Amount</div><div id="otA" class="big">Rs. 0</div></div>
-    <div class="card"><div class="muted">Pocket Expenses</div><div id="expA" class="big">Rs. 0</div></div>
+  <div class="periodSummary salaryHeroCard">
+    <div class="heroTop"><span>Total payable</span><span id="periodLabel">—</span></div>
+    <div id="periodPayable" class="heroAmount">Rs. 0</div>
+    <div class="heroBreakdown">
+      <div class="kv"><span>Basic salary</span><b id="salary">Rs. 0</b></div>
+      <div class="kv"><span>Total OT</span><b id="otH">0h 0m</b></div>
+      <div class="kv"><span>OT amount</span><b id="otA">Rs. 0</b></div>
+      <div class="kv"><span>Pocket expenses</span><b id="expA">Rs. 0</b></div>
+    </div>
   </div>
   <div class="grid">
     <div class="panel"><h3 class="sectionTitle">Today's Attendance</h3><div class="actions">
@@ -101,14 +154,12 @@ select,input,textarea{color:#edf1f7;background:#0b1119;border:1px solid #283341;
   <h3 class="sectionTitle">Manual Attendance / Missed Day</h3>
   <p class="muted">Agar kisi din TIME IN / TIME OUT bhool jao, yahan kal ya kisi bhi purane din ka time add kar sakte ho. OT automatically calculate hoga. Zaroorat ho to extra manual OT bhi add kar sakte ho.</p>
   <form id="manualAttForm" class="form">
-    <div class="two">
-      <div><label>Date</label><input id="mDate" type="date" required></div>
-      <div><label>Manual OT (Hours) — Optional</label><input id="mOT" type="number" min="0" step="0.25" placeholder="Example: 2"></div>
-    </div>
+    <div><label>Date</label><input id="mDate" type="date" required></div>
     <div class="two">
       <div><label>Time In</label><input id="mIn" type="text" placeholder="10:00 AM" required></div>
       <div><label>Time Out</label><input id="mOut" type="text" placeholder="10:00 PM" required></div>
     </div>
+    <div><label>Manual OT Hours · optional</label><input id="mOT" type="number" min="0" step="0.25" placeholder="0"></div>
     <button class="primary">SAVE / UPDATE ATTENDANCE</button>
   </form>
 </div>
@@ -129,7 +180,7 @@ select,input,textarea{color:#edf1f7;background:#0b1119;border:1px solid #283341;
 <div class="panel" style="margin-top:12px"><h3 class="sectionTitle">Expense History</h3><div id="expTable" class="table"></div></div>
 </section>
 
-<section id="recap" class="page"><div class="pageHeading"><h2>Monthly Recap</h2><span>Salary breakdown</span></div><div class="panel"><div style="display:flex;justify-content:space-between;align-items:center"><h3 class="sectionTitle">Monthly Recap</h3><button id="csv" class="gray">Export CSV</button></div><div id="recapBody"></div></div></section>
+<section id="recap" class="page"><div class="pageHeading"><h2>Monthly Recap</h2><span>Salary breakdown</span></div><div class="panel"><div style="display:flex;justify-content:space-between;align-items:center"><h3 class="sectionTitle">Monthly Recap</h3><button id="csv" class="gray">Export Excel</button></div><div id="recapBody"></div></div></section>
 
 <section id="khata" class="page"><div class="pageHeading"><h2>Khata / Udhar</h2><span>Separate ledger</span></div>
 <div class="panel">
@@ -203,7 +254,21 @@ function render(){
 }
 function renderAtt(rows){rows=rows.slice().sort((a,b)=>b.date.localeCompare(a.date));$("attTable").innerHTML=rows.length?`<table><thead><tr><th>Date</th><th>In</th><th>Out</th><th>Total</th><th>Auto OT</th><th>Manual OT</th><th>Total OT</th><th>Type</th><th></th></tr></thead><tbody>${rows.map(r=>{let c=calc(r);return`<tr><td>${r.date}</td><td>${displayTime(r.timeIn)}</td><td>${displayTime(r.timeOut)}</td><td>${minsText(c.total)}</td><td>${minsText(c.autoOt)}</td><td>${minsText(c.manualOt)}</td><td>${minsText(c.ot)}</td><td>${c.off?(c.total?'<span class="badge off">OFF DAY WORK</span>':'<span class="badge off">OFF DAY</span>'):c.ot?'<span class="badge ot">REGULAR + OT</span>':'<span class="badge ok">NORMAL</span>'}</td><td><button class="gray" onclick="editAtt('${r.date}')">Edit</button> <button class="red" onclick="delAtt('${r.date}')">Delete</button></td></tr>`}).join("")}</tbody></table>`:'<div class="empty">No attendance records for this period.</div>'}
 function renderExp(rows){$("exm").textContent=fmt(rows.reduce((s,x)=>s+Number(x.amount||0),0));$("exa").textContent=fmt(db.exp.reduce((s,x)=>s+Number(x.amount||0),0));rows=rows.slice().sort((a,b)=>b.date.localeCompare(a.date));$("expTable").innerHTML=rows.length?`<table><thead><tr><th>Date</th><th>Name</th><th>Amount</th><th>Note</th><th></th></tr></thead><tbody>${rows.map(e=>`<tr><td>${e.date}</td><td>${esc(e.name)}</td><td>${fmt(e.amount)}</td><td>${esc(e.note)}</td><td><button class="red" onclick="delExp('${e.id}')">Delete</button></td></tr>`).join("")}</tbody></table>`:'<div class="empty">No expenses for this period.</div>'}
-function renderRecap(t){let mn=periodText();$("recapBody").innerHTML=`<div class="cards"><div class="card"><div class="muted">Basic Salary</div><div class="big">${fmt(t.salary)}</div></div><div class="card"><div class="muted">OT Hours</div><div class="big">${minsText(t.ot)}</div></div><div class="card"><div class="muted">OT Amount</div><div class="big">${fmt(t.otAmt)}</div></div><div class="card"><div class="muted">Pocket Expenses</div><div class="big">${fmt(t.ex)}</div></div></div><div class="panel" style="margin-top:12px"><div class="kv"><span>Month</span><b>${mn}</b></div><div class="kv"><span>Present Days</span><b>${t.days}</b></div><div class="kv"><span>Sunday / Off-Day Work</span><b>${t.sun} days</b></div><div class="kv"><span>Regular-Day OT</span><b>${minsText(t.reg)}</b></div><div class="kv"><span>Sunday OT</span><b>${minsText(t.sot)}</b></div><div class="kv"><span>Pocket Expenses</span><b>${fmt(t.ex)}</b></div><div class="kv" style="font-size:18px"><span><b>TOTAL PAYABLE</b></span><b>${fmt(t.salary+t.otAmt+t.ex)}</b></div></div>`}
+function renderRecap(t){
+ $("recapBody").innerHTML=`<div class="recapDetail">
+ <div class="recapTitle">Salary breakdown <span>${periodText()}</span></div>
+ <div class="kv"><span>Basic salary</span><b>${fmt(t.salary)}</b></div>
+ <div class="kv"><span>Total overtime</span><b>${minsText(t.ot)}</b></div>
+ <div class="kv"><span>OT amount · ${fmt(db.settings.rate)} / HOUR</span><b>+ ${fmt(t.otAmt)}</b></div>
+ <div class="kv"><span>Pocket expenses</span><b>+ ${fmt(t.ex)}</b></div>
+ </div><div class="recapDetail"><div class="recapTitle">Attendance & overtime</div>
+ <div class="two"><div class="kv"><span>Present days</span><b>${t.days}</b></div><div class="kv"><span>Off-day work days</span><b>${t.sun}</b></div></div>
+ <div class="kv"><span>Regular OT</span><b>${minsText(t.reg)}</b></div>
+ <div class="kv"><span>Off-day OT</span><b>${minsText(t.sot)}</b></div></div>
+ <div class="recapPayable"><span>Total payable</span><strong>${fmt(t.salary+t.otAmt+t.ex)}</strong><small>Basic salary + OT amount + pocket expenses</small></div>
+ <p class="muted">Udhar is kept in its own separate ledger.</p>`;
+}
+
 function loadSettings(){$("sName").value=db.settings.name||"Hassan";$("sSalary").value=db.settings.salary;$("sDuty").value=db.settings.duty;$("sRate").value=db.settings.rate;$("sOff").value=db.settings.off}
 function applyPeriod(){let a=$("fromDate").value,b=$("toDate").value;if(!a||!b)return toast("Please select both dates.");if(a>b)return toast("From Date cannot be after To Date.");periodFrom=a;periodTo=b;localStorage.setItem(K+"_from",a);localStorage.setItem(K+"_to",b);render();}
 $("fromDate").onchange=applyPeriod;$("toDate").onchange=applyPeriod;
@@ -230,7 +295,76 @@ $("loanCancel").onclick=()=>{$("loanForm").reset();$("loanId").value="";$("loanD
 
 $("backup").onclick=()=>{let b=new Blob([JSON.stringify(db,null,2)],{type:"application/json"}),u=URL.createObjectURL(b),a=document.createElement("a");a.href=u;a.download="monthly-salary-recap-backup.json";a.click();URL.revokeObjectURL(u)};
 $("clear").onclick=()=>{if(confirm("Clear ALL saved data from this browser?")){localStorage.removeItem(K);location.reload()}};
-$("csv").onclick=()=>{let t=mt(),rows=[["Monthly Salary Recap",monthKey],["Basic Salary",t.salary],["OT Hours",minsText(t.ot)],["OT Amount",t.otAmt],["Pocket Expenses",t.ex],["TOTAL PAYABLE",t.salary+t.otAmt+t.ex],[],["Date","Time In","Time Out","Total","Auto OT","Manual OT","Total OT","Type"]];t.a.slice().sort((a,b)=>a.date.localeCompare(b.date)).forEach(r=>{let c=calc(r);rows.push([r.date,displayTime(r.timeIn),displayTime(r.timeOut),minsText(c.total),minsText(c.autoOt),minsText(c.manualOt),minsText(c.ot),c.off?"OFF DAY WORK":c.ot?"REGULAR + OT":"NORMAL"])});let csv=rows.map(x=>x.map(v=>`"${String(v??"").replace(/"/g,'""')}"`).join(",")).join("\\r\\n"),u=URL.createObjectURL(new Blob(["\ufeff"+csv],{type:"text/csv;charset=utf-8"})),a=document.createElement("a");a.href=u;a.download="salary-recap-"+periodFrom+"-to-"+periodTo+".csv";a.click();URL.revokeObjectURL(u)};
+
+function exportExcel(){
+ const t=mt(), headers=["Date","Time In","Time Out","Total Work","Auto OT","Manual OT","Total OT","Pocket Expense"];
+ const att=new Map(db.att.filter(r=>inPeriod(r.date)).map(r=>[r.date,r]));
+ const ex=new Map();
+ db.exp.filter(e=>inPeriod(e.date)).forEach(e=>ex.set(e.date,(ex.get(e.date)||0)+Number(e.amount||0)));
+ const data=[headers],d=new Date(periodFrom+"T12:00:00"),end=new Date(periodTo+"T12:00:00");
+ let work=0,auto=0,manual=0,all=0,expenses=0,present=0,off=0;
+ for(let i=0;d<=end&&i<3700;i++,d.setDate(d.getDate()+1)){
+   const date=dk(d),r=att.get(date),c=r?calc(r):null,expense=ex.get(date)||0;
+   if(c){work+=c.total;auto+=c.autoOt;manual+=c.manualOt;all+=c.ot;if(r.timeIn)present++;if(c.off&&c.total)off++;}
+   expenses+=expense;
+   data.push([date,r?displayTime(r.timeIn):"",r?displayTime(r.timeOut):"",c?minsText(c.total):"",c?minsText(c.autoOt):"",c?minsText(c.manualOt):"",c?minsText(c.ot):"",expense||""]);
+ }
+ data.push(["TOTAL",present,off,minsText(work),minsText(auto),minsText(manual),minsText(all),expenses]);
+ data.push([]);
+ data.push(["Monthly Salary Recap","",periodText()]);
+ data.push(["Basic Salary","",t.salary]);
+ data.push(["OT Hours","",minsText(t.ot)]);
+ data.push(["OT Rate per Hour","",Number(db.settings.rate||0)]);
+ data.push(["OT Amount","",t.otAmt]);
+ data.push(["Pocket Expenses","",t.ex]);
+ data.push(["TOTAL PAYABLE","",t.salary+t.otAmt+t.ex]);
+ const xmlEscape=x=>String(x??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&apos;");
+ const col=n=>{let s="";for(n++;n;n=Math.floor((n-1)/26))s=String.fromCharCode(65+(n-1)%26)+s;return s;};
+ const totalIndex=data.findIndex(row=>row[0]==="TOTAL");
+ const summaryStart=totalIndex+2;
+ const rows=data.map((row,i)=>`<row r="${i+1}"${i===0?' ht="27" customHeight="1"':''}>`+
+ row.map((v,j)=>{if(v===""||v===null||v===undefined)return "";
+ const numeric=typeof v==="number",style=i===0?1:i===totalIndex?2:i===summaryStart?3:i===data.length-1?4:(i>summaryStart?5:(i%2?0:6));
+ return `<c r="${col(j)}${i+1}" s="${style}" t="${numeric?'n':'inlineStr'}">${numeric?`<v>${v}</v>`:`<is><t>${xmlEscape(v)}</t></is>`}</c>`;
+ }).join("")+"</row>").join("");
+ const sheet=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+ <worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><sheetViews><sheetView workbookViewId="0"/></sheetViews>
+ <sheetFormatPr defaultRowHeight="19"/><cols><col min="1" max="1" width="18" customWidth="1"/><col min="2" max="3" width="17" customWidth="1"/><col min="4" max="7" width="19" customWidth="1"/><col min="8" max="8" width="21" customWidth="1"/></cols>
+ <sheetData>${rows}</sheetData><autoFilter ref="A1:H${totalIndex}"/><pageMargins left=".3" right=".3" top=".5" bottom=".5" header=".2" footer=".2"/></worksheet>`;
+ const styles=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+ <styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">
+ <fonts count="3"><font><sz val="11"/><name val="Calibri"/></font><font><b/><color rgb="FFFFFFFF"/><sz val="11"/><name val="Calibri"/></font><font><b/><color rgb="FF12243C"/><sz val="11"/><name val="Calibri"/></font></fonts>
+ <fills count="5"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill><fill><patternFill patternType="solid"><fgColor rgb="FF11283F"/><bgColor indexed="64"/></patternFill></fill><fill><patternFill patternType="solid"><fgColor rgb="FFD9EFF9"/><bgColor indexed="64"/></patternFill></fill><fill><patternFill patternType="solid"><fgColor rgb="FFEFF5FA"/><bgColor indexed="64"/></patternFill></fill></fills>
+ <borders count="1"><border><left/><right/><top/><bottom/><diagonal/></border></borders>
+ <cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs>
+ <cellXfs count="7"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="1" fillId="2" borderId="0" xfId="0"/><xf numFmtId="0" fontId="2" fillId="3" borderId="0" xfId="0"/><xf numFmtId="0" fontId="1" fillId="2" borderId="0" xfId="0"/><xf numFmtId="0" fontId="1" fillId="2" borderId="0" xfId="0"/><xf numFmtId="0" fontId="2" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="0" fillId="4" borderId="0" xfId="0"/></cellXfs>
+ </styleSheet>`;
+ const files={
+ "[Content_Types].xml":`<?xml version="1.0" encoding="UTF-8"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/></Types>`,
+ "_rels/.rels":`<?xml version="1.0" encoding="UTF-8"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>`,
+ "xl/workbook.xml":`<?xml version="1.0" encoding="UTF-8"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="Salary Recap" sheetId="1" r:id="rId1"/></sheets></workbook>`,
+ "xl/_rels/workbook.xml.rels":`<?xml version="1.0" encoding="UTF-8"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>`,
+ "xl/worksheets/sheet1.xml":sheet,"xl/styles.xml":styles};
+ const u16=n=>[n&255,(n>>>8)&255],u32=n=>[n&255,(n>>>8)&255,(n>>>16)&255,(n>>>24)&255];
+ const enc=new TextEncoder(), chunks=[],central=[];let offset=0;
+ const table=Array.from({length:256},(_,n)=>{for(let k=0;k<8;k++)n=n&1?0xEDB88320^(n>>>1):n>>>1;return n>>>0;});
+ const crc=buf=>{let c=0xFFFFFFFF;for(const x of buf)c=table[(c^x)&255]^(c>>>8);return (c^0xFFFFFFFF)>>>0;};
+ const add=arr=>{const b=Uint8Array.from(arr);chunks.push(b);offset+=b.length;};
+ for(const [name,content] of Object.entries(files)){
+   const nameBytes=enc.encode(name),bytes=enc.encode(content),checksum=crc(bytes),at=offset;
+   add([...u32(0x04034b50),...u16(20),...u16(0),...u16(0),...u16(0),...u16(0),...u32(checksum),...u32(bytes.length),...u32(bytes.length),...u16(nameBytes.length),...u16(0),...nameBytes]);
+   add(bytes);
+   central.push([...u32(0x02014b50),...u16(20),...u16(20),...u16(0),...u16(0),...u16(0),...u16(0),...u32(checksum),...u32(bytes.length),...u32(bytes.length),...u16(nameBytes.length),...u16(0),...u16(0),...u16(0),...u16(0),...u32(0),...u32(at),...nameBytes]);
+ }
+ const start=offset;for(const c of central)add(c);
+ add([...u32(0x06054b50),...u16(0),...u16(0),...u16(central.length),...u16(central.length),...u32(offset-start),...u32(start),...u16(0)]);
+ const blob=new Blob(chunks,{type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
+ const url=URL.createObjectURL(blob),a=document.createElement("a");
+ a.href=url;a.download=`salary-recap-${periodFrom}-to-${periodTo}.xlsx`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),3000);
+}
+
+$("csv").onclick=exportExcel;
+
 $("edate").value=nowDate();$("attDate").value=nowDate();$("mDate").value=nowDate();$("loanDate").value=nowDate();render();
 </script>
 

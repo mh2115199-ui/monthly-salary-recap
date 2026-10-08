@@ -1,6 +1,6 @@
 {
-  "name": "Monthly Salary Recap",
-  "short_name": "Salary Recap",
+  "name": "Easy Print Solution Attendance Software",
+  "short_name": "Attendance",
   "start_url": "./index.html",
   "display": "standalone",
   "theme_color": "#101a33",
